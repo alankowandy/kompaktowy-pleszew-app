@@ -88,8 +88,11 @@ fun MainView(){
             }
         }
     ) {
-        Text(text = "Text", modifier = Modifier.padding(it))
-        //MenuScreen(homeViewItems = )
+        //Text(text = "Text", modifier = Modifier.padding(it))
+        MenuScreen(
+            homeViewItems = viewModel.menuItems,
+            modifier = Modifier.padding(it)
+        )
     }
 
 }
