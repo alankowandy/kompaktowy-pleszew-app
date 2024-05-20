@@ -1,4 +1,4 @@
-package com.example.pleszew.ui.theme
+package com.example.pleszew.main.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,8 +17,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,12 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.pleszew.MainViewModel
-import com.example.pleszew.Screen
-import com.example.pleszew.screensInDrawer
+import com.example.pleszew.core.data.DrawerScreen
+import com.example.pleszew.core.data.screensInDrawer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -62,33 +61,45 @@ fun MainView(){
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(text = "Kompaktowy Pleszew") },
-                navigationIcon = { IconButton(onClick = {
-                    scope.launch {
-                        scaffoldState.drawerState.open()
+            CenterAlignedTopAppBar(
+                title = { Text(text = "Kompaktowy Pleszew") },
+                navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                scaffoldState.drawerState.open()
+                            }
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = "Menu"
+                        )
                     }
-                }) {
-                    Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
                 }
-            })
+            )
         },
         scaffoldState = scaffoldState,
         drawerContent = {
-            LazyColumn(Modifier.padding(16.dp)){
+            LazyColumn(
+                modifier = Modifier.padding(16.dp)
+            ){
                 items(screensInDrawer){
                     item ->
-                    DrawerItem(selected = currentRoute == item.dRoute, item = item) {
+                    DrawerItem(
+                        selected = currentRoute == item.route,
+                        item = item
+                    ) {
                         scope.launch {
                             scaffoldState.drawerState.close()
                         }
-                        controller.navigate(item.dRoute)
-                        title.value = item.dTtitle
+                        controller.navigate(item.route)
+                        title.value = item.title
                     }
                 }
             }
         }
     ) {
-        //Text(text = "Text", modifier = Modifier.padding(it))
         MenuScreen(
             homeViewItems = viewModel.menuItems,
             modifier = Modifier.padding(it)
@@ -100,10 +111,10 @@ fun MainView(){
 @Composable
 fun DrawerItem(
     selected: Boolean,
-    item: Screen.DrawerScreen,
+    item: DrawerScreen,
     onDrawerItemClicked: () -> Unit
 ){
-    val dSelected: Int = if (selected) 250 else 100
+    val dSelected: FontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
     Row (
         Modifier
             .fillMaxWidth()
@@ -112,16 +123,16 @@ fun DrawerItem(
     ){
         Icon(
             painter = painterResource(id = item.icon),
-            contentDescription = item.dTtitle,
-            Modifier
+            contentDescription = item.title,
+            modifier = Modifier
                 .padding(end = 8.dp)
                 .size(36.dp)
         )
         Text(
-            text = item.dTtitle,
+            text = item.title,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(top = 9.dp)
-            //fontWeight = FontWeight(dSelected)
+            modifier = Modifier.padding(top = 9.dp),
+            fontWeight = dSelected
         )
     }
 }

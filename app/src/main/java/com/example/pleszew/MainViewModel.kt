@@ -3,15 +3,17 @@ package com.example.pleszew
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.pleszew.core.data.DrawerScreen
+import com.example.pleszew.main.data.HomeViewItems
 
 class MainViewModel: ViewModel() {
 
-    private val _currentScreen: MutableState<Screen> = mutableStateOf(Screen.DrawerScreen.HomeView)
+    private val _currentScreen: MutableState<DrawerScreen> = mutableStateOf(DrawerScreen.HomeView)
 
-    val currentScreen: MutableState<Screen>
+    val currentScreen: MutableState<DrawerScreen>
         get() = _currentScreen
 
-    fun setCurrentScreen(screen: Screen){
+    fun setCurrentScreen(screen: DrawerScreen){
         _currentScreen.value = screen
     }
 

@@ -1,4 +1,4 @@
-package com.example.pleszew.ui.theme
+package com.example.pleszew.main.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,7 +20,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.pleszew.HomeViewItems
+import com.example.pleszew.main.data.HomeViewItems
+import com.example.pleszew.ui.theme.Typography
 
 @Composable
 fun MenuScreen(homeViewItems: List<HomeViewItems>, modifier: Modifier){
@@ -46,7 +47,7 @@ fun MenuItem(homeViewItem: HomeViewItems){
         Box (
             modifier = Modifier
                 .clip(CircleShape)
-                .size(160.dp)
+                .size(144.dp)
                 .background(
                     color = Color(0xFF0068B4)
                 ),
@@ -56,7 +57,7 @@ fun MenuItem(homeViewItem: HomeViewItems){
                 painter = painterResource(id = homeViewItem.icon),
                 contentDescription = "icon",
                 tint = Color(0xFFFFFFFF),
-                modifier = Modifier.size(110.dp)
+                modifier = Modifier.size(94.dp)
             )
         }
 

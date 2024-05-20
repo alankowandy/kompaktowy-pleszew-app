@@ -1,4 +1,4 @@
-package com.example.pleszew
+package com.example.pleszew.main.data
 
 import androidx.annotation.DrawableRes
 
