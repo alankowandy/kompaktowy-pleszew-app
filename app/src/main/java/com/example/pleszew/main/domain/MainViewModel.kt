@@ -1,14 +1,15 @@
-package com.example.pleszew
+package com.example.pleszew.main.domain
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.pleszew.R
 import com.example.pleszew.core.data.DrawerScreen
 import com.example.pleszew.main.data.HomeViewItems
 
 class MainViewModel: ViewModel() {
 
-    private val _currentScreen: MutableState<DrawerScreen> = mutableStateOf(DrawerScreen.HomeView)
+    private val _currentScreen: MutableState<DrawerScreen> = mutableStateOf(DrawerScreen.HomePage)
 
     val currentScreen: MutableState<DrawerScreen>
         get() = _currentScreen
@@ -20,27 +21,33 @@ class MainViewModel: ViewModel() {
     val menuItems: List<HomeViewItems> = listOf(
         HomeViewItems(
             name = "Wywóz śmieci",
+            route = "wywoz_smieci",
             icon = R.drawable.ic_recycling_24
         ),
         HomeViewItems(
             name = "Komunikacja miejska",
-            icon = R.drawable.ic_bus_white
+            route = "komunikacja_miejska",
+            icon = R.drawable.ic_bus
         ),
         HomeViewItems(
             name = "Wydarzenia kulturalne",
-            icon = R.drawable.ic_ticket_white
+            route = "wydarzenia_kulturalne",
+            icon = R.drawable.ic_ticket_96
         ),
         HomeViewItems(
             name = "Miejsca rozrywki",
-            icon = R.drawable.ic_bowling_white
+            route = "miejsca_rozrywki",
+            icon = R.drawable.ic_bowling
         ),
         HomeViewItems(
             name = "Miasto i samorząd",
-            icon = R.drawable.ic_tower_white
+            route = "miasto_samorzad",
+            icon = R.drawable.ic_tower
         ),
         HomeViewItems(
             name = "Miasto 15'",
-            icon = R.drawable.ic_stopwatch_white
+            route = "miasto15",
+            icon = R.drawable.ic_stopwatch
         )
     )
 }

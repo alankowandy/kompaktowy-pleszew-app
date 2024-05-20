@@ -20,27 +20,38 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.pleszew.main.data.HomeViewItems
+import com.example.pleszew.main.domain.MainViewModel
 import com.example.pleszew.ui.theme.Typography
 
 @Composable
-fun MenuScreen(homeViewItems: List<HomeViewItems>, modifier: Modifier){
+fun MenuScreen(
+    navController: NavController,
+    homeViewItems: List<HomeViewItems>
+){
     LazyVerticalGrid(GridCells.Fixed(2), modifier = Modifier.fillMaxSize()){
         items(homeViewItems){
             homeViewItem ->
-            MenuItem(homeViewItem = homeViewItem)
+            MenuItem(
+                navController = navController,
+                homeViewItem = homeViewItem
+            )
         }
     }
 }
 
 @Composable
-fun MenuItem(homeViewItem: HomeViewItems){
+fun MenuItem(
+    navController: NavController,
+    homeViewItem: HomeViewItems
+){
     Column(
         modifier = Modifier
             .padding(top = 24.dp, bottom = 24.dp)
             .fillMaxSize()
             .clickable {
-                       //TODO
+                navController.navigate(homeViewItem.route)
             },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
