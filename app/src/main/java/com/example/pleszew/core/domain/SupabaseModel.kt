@@ -1,5 +1,7 @@
 package com.example.pleszew.core.domain
 
+import com.example.pleszew.miejsca_rozrywki.data.MiejscaRozrywkiRepository
+import com.example.pleszew.miejsca_rozrywki.data.MiejscaRozrywkiRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +31,10 @@ object SupabaseModel {
     @Singleton
     fun provideSupabaseDatabase(client: SupabaseClient): Postgrest {
         return client.postgrest
+    }
+
+    @Provides
+    fun provideMiejscaRozrywkiRepository(postgrest: Postgrest): MiejscaRozrywkiRepository{
+        return MiejscaRozrywkiRepositoryImpl(postgrest)
     }
 }

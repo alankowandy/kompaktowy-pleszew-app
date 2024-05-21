@@ -31,6 +31,7 @@ import com.example.pleszew.core.data.Screen
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
 import com.example.pleszew.main.presentation.MenuScreen
+import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiScreen
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
 import kotlinx.coroutines.CoroutineScope
@@ -156,7 +157,10 @@ fun MainView(){
                 route = Screen.MiejscaRozrywki.route
             ) {
                 composable(Screen.MiejscaRozrywkiStart.route) {
-
+                    MiejscaRozrywkiScreen(
+                        navController = navController,
+                        sharedViewModel = sharedViewModel
+                    )
                 }
 
                 composable(Screen.MiejscaRozrywkiDetails.route) {
