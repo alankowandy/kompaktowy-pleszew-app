@@ -1,6 +1,5 @@
-package com.example.pleszew.main.presentation
+package com.example.pleszew.core.domain
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,20 +12,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -34,12 +28,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.pleszew.city15.presentation.Miasto15
 import com.example.pleszew.core.data.Screen
-import com.example.pleszew.main.domain.MainViewModel
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
+import com.example.pleszew.main.presentation.MenuScreen
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
-import com.example.pleszew.ui.theme.PleszewTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -49,25 +42,21 @@ fun MainView(){
 
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val scope: CoroutineScope = rememberCoroutineScope()
-    val viewModel: MainViewModel = viewModel()
+    val sharedViewModel: SharedViewModel = viewModel()
 
     // Na jakim ekranie się obecnie znajdujemy
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+    val currentRoute = navBackStackEntry?.destination?.parent?.route
+        ?: navBackStackEntry?.destination?.route
 
-    val currentScreen = remember{
-        viewModel.currentScreen.value
-    }
-
-    val title = remember{
-        mutableStateOf(currentScreen.title)
-    }
+    // Dynamicznie aktualizowany tytul na pasku na podstawie shared view modelu
+    val title by sharedViewModel.title.collectAsState(initial = "")
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = title.value) },
+                title = { title?.let { Text(text = it) } },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = CiemnyNiebieski,
                     navigationIconContentColor = Bialy,
@@ -104,7 +93,6 @@ fun MainView(){
                                 scaffoldState.drawerState.close()
                             }
                             navController.navigate(item.route)
-                            title.value = item.title
                         }
                     )
                 }
@@ -120,7 +108,7 @@ fun MainView(){
             composable(Screen.HomePage.route) {
                 MenuScreen(
                     navController = navController,
-                    homeViewItems = viewModel.menuItems
+                    sharedViewModel = sharedViewModel
                 )
             }
 
@@ -181,7 +169,9 @@ fun MainView(){
             }
 
             composable(Screen.Miasto15.route) {
-                Miasto15()
+                Miasto15(
+                    sharedViewModel = sharedViewModel
+                )
             }
         }
     }

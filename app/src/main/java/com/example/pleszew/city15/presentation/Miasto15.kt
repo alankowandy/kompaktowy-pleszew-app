@@ -14,10 +14,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.pleszew.core.data.MenuItems
+import com.example.pleszew.core.domain.SharedViewModel
 import com.example.pleszew.ui.theme.CiemnyNiebieski
 
 @Composable
-fun Miasto15() {
+fun Miasto15(
+    sharedViewModel: SharedViewModel
+) {
+    sharedViewModel.setCurrentScreen(MenuItems.Miasto15)
     Column(
         modifier = Modifier
             .fillMaxSize()

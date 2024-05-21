@@ -21,21 +21,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.pleszew.main.data.HomeViewItems
-import com.example.pleszew.main.domain.MainViewModel
+import com.example.pleszew.core.data.MenuItems
+import com.example.pleszew.core.data.screensInMenu
+import com.example.pleszew.core.domain.SharedViewModel
 import com.example.pleszew.ui.theme.Typography
 
 @Composable
 fun MenuScreen(
     navController: NavController,
-    homeViewItems: List<HomeViewItems>
+    sharedViewModel: SharedViewModel
 ){
+    sharedViewModel.setCurrentScreen(MenuItems.HomePage)
     LazyVerticalGrid(GridCells.Fixed(2), modifier = Modifier.fillMaxSize()){
-        items(homeViewItems){
-            homeViewItem ->
+        items(screensInMenu){
+            item ->
             MenuItem(
                 navController = navController,
-                homeViewItem = homeViewItem
+                item = item
             )
         }
     }
@@ -44,14 +46,14 @@ fun MenuScreen(
 @Composable
 fun MenuItem(
     navController: NavController,
-    homeViewItem: HomeViewItems
+    item: MenuItems
 ){
     Column(
         modifier = Modifier
             .padding(top = 24.dp, bottom = 24.dp)
             .fillMaxSize()
             .clickable {
-                navController.navigate(homeViewItem.route)
+                navController.navigate(item.route)
             },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -65,7 +67,7 @@ fun MenuItem(
             contentAlignment = Alignment.Center
         ){
             Icon(
-                painter = painterResource(id = homeViewItem.icon),
+                painter = painterResource(id = item.icon),
                 contentDescription = "icon",
                 tint = Color(0xFFFFFFFF),
                 modifier = Modifier.size(94.dp)
@@ -73,9 +75,9 @@ fun MenuItem(
         }
 
         Text(
-            text = homeViewItem.name,
+            text = item.title,
             color = Color.Black,
-            style = Typography.bodyLarge,
+            style = Typography.bodyMedium,
             modifier = Modifier.padding(top = 16.dp)
         )
     }

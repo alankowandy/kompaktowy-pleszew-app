@@ -14,12 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.pleszew.core.data.DrawerScreen
+import com.example.pleszew.core.data.MenuItems
+import com.example.pleszew.core.domain.SharedViewModel
 
 @Composable
 fun DrawerItem(
     selected: Boolean,
-    item: DrawerScreen,
+    item: MenuItems,
     onDrawerItemClicked: () -> Unit
 ){
     val dSelected: FontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
