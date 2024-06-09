@@ -1,7 +1,7 @@
 package com.example.pleszew.core.domain
 
-import com.example.pleszew.miejsca_rozrywki.data.MiejscaRozrywkiRepository
-import com.example.pleszew.miejsca_rozrywki.data.MiejscaRozrywkiRepositoryImpl
+import com.example.pleszew.miejsca_rozrywki.data.start.MiejscaRozrywkiRepository
+import com.example.pleszew.miejsca_rozrywki.data.start.MiejscaRozrywkiRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,7 @@ object SupabaseModel {
     }
 
     @Provides
-    fun provideMiejscaRozrywkiRepository(postgrest: Postgrest): MiejscaRozrywkiRepository{
+    fun provideMiejscaRozrywkiRepository(postgrest: Postgrest): MiejscaRozrywkiRepository {
         return MiejscaRozrywkiRepositoryImpl(postgrest)
     }
 }

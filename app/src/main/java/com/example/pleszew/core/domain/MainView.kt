@@ -27,10 +27,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.pleszew.city15.presentation.Miasto15
-import com.example.pleszew.core.data.Screen
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
 import com.example.pleszew.main.presentation.MenuScreen
+import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiDetailsScreen
 import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiScreen
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainView(){
+fun MainView() {
 
     val scaffoldState: ScaffoldState = rememberScaffoldState()
     val scope: CoroutineScope = rememberCoroutineScope()
@@ -102,11 +102,11 @@ fun MainView(){
     ) {innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.HomePage.route,
+            startDestination = HomePage.route,
             Modifier.padding(innerPadding)
         ) {
             // Nawigacja na stronę główną
-            composable(Screen.HomePage.route) {
+            composable(HomePage.route) {
                 MenuScreen(
                     navController = navController,
                     sharedViewModel = sharedViewModel
@@ -114,65 +114,73 @@ fun MainView(){
             }
 
             navigation(
-                startDestination = Screen.WywozSmieciStart.route,
-                route = Screen.WywozSmieci.route
+                startDestination = WywozSmieciStart.route,
+                route = WywozSmieci.route
             ) {
-                composable(Screen.WywozSmieciStart.route) {
+                composable(WywozSmieciStart.route) {
 
                 }
 
-                composable(Screen.WywozSmieciDetails.route) {
+                composable(WywozSmieciDetails.route) {
 
                 }
             }
 
             navigation(
-                startDestination = Screen.KomunikacjaMiejskaStart.route,
-                route = Screen.KomunikacjaMiejska.route
+                startDestination = KomunikacjaMiejskaStart.route,
+                route = KomunikacjaMiejska.route
             ) {
-                composable(Screen.KomunikacjaMiejskaStart.route) {
+                composable(KomunikacjaMiejskaStart.route) {
 
                 }
 
-                composable(Screen.KomunikacjaMiejskaDetails.route) {
+                composable(KomunikacjaMiejskaDetails.route) {
 
                 }
             }
 
             navigation(
-                startDestination = Screen.WydarzeniaKulturalneStart.route,
-                route = Screen.WydarzeniaKulturalne.route
+                startDestination = WydarzeniaKulturalneStart.route,
+                route = WydarzeniaKulturalne.route
             ) {
-                composable(Screen.WydarzeniaKulturalneStart.route) {
+                composable(WydarzeniaKulturalneStart.route) {
 
                 }
 
-                composable(Screen.WydarzeniaKulturalneDetails.route) {
+                composable(WydarzeniaKulturalneDetails.route) {
 
                 }
             }
 
             navigation(
-                startDestination = Screen.MiejscaRozrywkiStart.route,
-                route = Screen.MiejscaRozrywki.route
+                startDestination = MiejscaRozrywkiStart.route,
+                route = MiejscaRozrywki.route
             ) {
-                composable(Screen.MiejscaRozrywkiStart.route) {
+                composable(MiejscaRozrywkiStart.route) {
                     MiejscaRozrywkiScreen(
                         navController = navController,
                         sharedViewModel = sharedViewModel
                     )
                 }
 
-                composable(Screen.MiejscaRozrywkiDetails.route) {
-
+                composable(
+                    route = "${MiejscaRozrywkiDetails.route}/{${MiejscaRozrywkiDetails.locationId}}",
+                    arguments = MiejscaRozrywkiDetails.arguments
+                ) {navBackStackEntry ->
+                    val locationId =
+                        navBackStackEntry.arguments?.getString(MiejscaRozrywkiDetails.locationId)
+                    MiejscaRozrywkiDetailsScreen(
+                        navController = navController,
+                        locationId = locationId
+                    )
                 }
             }
 
-            composable(Screen.MiastoSamorzad.route) {
+            composable(MiastoSamorzad.route) {
 
             }
 
-            composable(Screen.Miasto15.route) {
+            composable(Miasto15.route) {
                 Miasto15(
                     sharedViewModel = sharedViewModel
                 )

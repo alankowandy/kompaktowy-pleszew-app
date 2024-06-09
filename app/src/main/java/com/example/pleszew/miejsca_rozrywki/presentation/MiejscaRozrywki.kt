@@ -17,18 +17,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.pleszew.R
 import com.example.pleszew.core.data.MenuItems
+import com.example.pleszew.core.domain.MiejscaRozrywkiDetails
 import com.example.pleszew.core.domain.SharedViewModel
-import com.example.pleszew.miejsca_rozrywki.data.Locations
+import com.example.pleszew.miejsca_rozrywki.data.start.Locations
 import com.example.pleszew.miejsca_rozrywki.domain.MiejscaRozrywkiViewModel
 import com.example.pleszew.ui.theme.JasnyNiebieski
-import com.example.pleszew.ui.theme.PleszewTheme
 
 @Composable
 fun MiejscaRozrywkiScreen(
@@ -46,7 +45,10 @@ fun MiejscaRozrywkiScreen(
         if (!locations.isNullOrEmpty()) {
             items(locations) {
                 item ->
-                EntertainmentPlaceItem(place = item)
+                EntertainmentPlaceItem(
+                    place = item,
+                    navController = navController
+                )
             }
         }
     }
@@ -54,7 +56,8 @@ fun MiejscaRozrywkiScreen(
 
 @Composable
 fun EntertainmentPlaceItem(
-    place: Locations
+    place: Locations,
+    navController: NavController
 ) {
 
     @DrawableRes val icon: Int = when (place.id) {
@@ -66,7 +69,11 @@ fun EntertainmentPlaceItem(
         modifier = Modifier
             .padding(15.dp)
             .clickable {
-                       //TODO
+                navController.navigate(
+                    MiejscaRozrywkiDetails.createRouteWithParam(
+                        place.id
+                    )
+                )
             },
         shape = RoundedCornerShape(8.dp),
         backgroundColor = JasnyNiebieski,

@@ -1,4 +1,4 @@
-package com.example.pleszew.miejsca_rozrywki.data
+package com.example.pleszew.miejsca_rozrywki.data.start
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
