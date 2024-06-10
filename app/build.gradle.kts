@@ -65,6 +65,10 @@ dependencies {
     val ktor_version = "2.3.11"
     val supabase_version = "2.4.1"
 
+    //google maps
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.maps.android:maps-compose:2.7.2")
+
     //pull to refresh
     implementation(platform("androidx.compose:compose-bom:2024.05.00"))
 

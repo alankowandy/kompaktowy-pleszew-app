@@ -27,6 +27,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import com.example.pleszew.city15.presentation.Miasto15
+import com.example.pleszew.core.data.MenuItems
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
 import com.example.pleszew.main.presentation.MenuScreen
@@ -94,7 +95,9 @@ fun MainView() {
                             scope.launch {
                                 scaffoldState.drawerState.close()
                             }
-                            navController.navigate(item.route)
+                            navController.navigate(item.route) {
+                                popUpTo(MenuItems.HomePage.route)
+                            }
                         }
                     )
                 }
