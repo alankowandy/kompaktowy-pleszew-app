@@ -19,7 +19,7 @@ class DetailsViewModel @Inject constructor(
     private val _details = MutableStateFlow<List<LocationDetails>?>(listOf())
     val details: Flow<List<LocationDetails>?> = _details
 
-    fun getDeatils(id: String) {
+    fun getDetails(id: String) {
         viewModelScope.launch {
             val detailsMap = miejscaRozrywkiRepository.getDetails(id)
             Log.d("tag", detailsMap.toString())
@@ -32,11 +32,14 @@ class DetailsViewModel @Inject constructor(
             locationName = this.locationName,
             locationPhone = this.locationPhone,
             locationEmail = this.locationEmail,
-//            locationStreet = this.locationStreet,
-//            locationStreetNum = this.locationStreetNum,
-//            locationHouseNum = this.locationHouseNum,
-//            locationPostal = this.locationPostal,
-//            location = this.location,
+            locationStreet = this.locationStreet,
+            locationStreetNum = this.locationStreetNum,
+            locationHouseNum = this.locationHouseNum,
+            locationPostal = this.locationPostal,
+            location = this.location,
+            weekDay = this.weekDay,
+            openHours = this.openHours,
+            closeHours = this.closeHours,
             locationWebsiteName = this.locationWebsiteName,
             locationWebsite = this.locationWebsite
         )

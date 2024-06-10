@@ -30,6 +30,7 @@ import com.example.pleszew.city15.presentation.Miasto15
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
 import com.example.pleszew.main.presentation.MenuScreen
+import com.example.pleszew.miasto_samorzad.presentation.screen.MiastoSamorzadSceen
 import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiDetailsScreen
 import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiScreen
 import com.example.pleszew.ui.theme.Bialy
@@ -170,14 +171,15 @@ fun MainView() {
                     val locationId =
                         navBackStackEntry.arguments?.getString(MiejscaRozrywkiDetails.locationId)
                     MiejscaRozrywkiDetailsScreen(
-                        navController = navController,
                         locationId = locationId
                     )
                 }
             }
 
             composable(MiastoSamorzad.route) {
-
+                MiastoSamorzadSceen(
+                    sharedViewModel = sharedViewModel
+                )
             }
 
             composable(Miasto15.route) {

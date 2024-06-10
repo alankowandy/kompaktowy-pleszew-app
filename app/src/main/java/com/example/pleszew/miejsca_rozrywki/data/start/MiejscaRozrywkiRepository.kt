@@ -31,28 +31,12 @@ class MiejscaRozrywkiRepositoryImpl @Inject constructor(
 
     override suspend fun getDetails(id: String): List<LocationDetailsDto> {
         return withContext(Dispatchers.IO) {
-            val columns =
-                Columns.raw("""
-                    nazwa_miejsca,
-                    numer_tel,
-                    adres_email,
-                    miejsca_rozrywki_www (
-                       nazwa_www,
-                       adres_www
-                    )
-                """.trimIndent())
             val data = postgrest.rpc(
                 function = "get_miejsce_rozrywki_details",
                 parameters = buildJsonObject {
-                    put("user_id", 1)
+                    put("location_id", id)
                 }
             ).decodeList<LocationDetailsDto>()
-//            val result = postgrest.from("miejsca_rozrywki_main")
-//                .select(columns = columns) {
-//                    filter {
-//                        eq("id", id)
-//                    }
-//                }.decodeList<LocationDetailsDto>()
             data
         }
     }
