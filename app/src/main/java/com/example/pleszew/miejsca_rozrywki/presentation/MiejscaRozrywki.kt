@@ -6,11 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +24,7 @@ import com.example.pleszew.R
 import com.example.pleszew.core.data.MenuItems
 import com.example.pleszew.core.domain.MiejscaRozrywkiDetails
 import com.example.pleszew.core.domain.SharedViewModel
+import com.example.pleszew.core.presentation.PullToRefreshLazyColumn
 import com.example.pleszew.miejsca_rozrywki.data.start.Locations
 import com.example.pleszew.miejsca_rozrywki.domain.MiejscaRozrywkiViewModel
 import com.example.pleszew.ui.theme.JasnyNiebieski
@@ -36,21 +36,26 @@ fun MiejscaRozrywkiScreen(
     miejscaRozrywkiViewModel: MiejscaRozrywkiViewModel = hiltViewModel()
 ) {
     sharedViewModel.setCurrentScreen(MenuItems.MiejscaRozrywki)
+    val isLoading by miejscaRozrywkiViewModel.isLoading.collectAsState(initial = false)
     val locations = miejscaRozrywkiViewModel.locations.collectAsState(initial = listOf()).value
 
-    LazyColumn(
+    Box(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        if (!locations.isNullOrEmpty()) {
-            items(locations) {
-                item ->
+        PullToRefreshLazyColumn(
+            listItems = locations!!,
+            content = {
                 EntertainmentPlaceItem(
-                    place = item,
+                    place = it,
                     navController = navController
                 )
+            },
+            isRefreshing = isLoading,
+            onRefresh = {
+                miejscaRozrywkiViewModel.getLocations()
             }
-        }
+        )
     }
 }
 
@@ -61,7 +66,20 @@ fun EntertainmentPlaceItem(
 ) {
 
     @DrawableRes val icon: Int = when (place.id) {
-        "1" -> { R.drawable.ic_bowling }
+        "1" -> { R.drawable.ic_kino_hel }
+        "2" -> { R.drawable.ic_recycling }
+        "3" -> { R.drawable.ic_muzeum_piekarstwa }
+        "4" -> { R.drawable.ic_muzeum }
+        "5" -> { R.drawable.ic_park }
+        "6" -> { R.drawable.ic_basen }
+        "7" -> { R.drawable.ic_bowling }
+        "8" -> { R.drawable.ic_book }
+        "9" -> { R.drawable.ic_amfiteatr }
+        "10" -> { R.drawable.ic_muzeum }
+        "11" -> { R.drawable.ic_sport }
+        "12" -> { R.drawable.ic_silownia }
+        "13" -> { R.drawable.ic_centrum_wspierania }
+        "14" -> { R.drawable.ic_stadion_miejski }
         else -> { R.drawable.ic_bus }
     }
 

@@ -20,15 +20,19 @@ class MiejscaRozrywkiViewModel @Inject constructor(
     private val _locations = MutableStateFlow<List<Locations>?>(listOf())
     val locations: Flow<List<Locations>?> = _locations
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: Flow<Boolean> = _isLoading
+
     init {
         getLocations()
     }
 
     fun getLocations() {
         viewModelScope.launch {
+            _isLoading.value = true
             val locationsMap = miejscaRozrywkiRepository.getLocations()
             _locations.emit(locationsMap.map { it -> it.asDomainModel() })
-            Log.d("tag1", locationsMap.toString())
+            _isLoading.value = false
         }
     }
 

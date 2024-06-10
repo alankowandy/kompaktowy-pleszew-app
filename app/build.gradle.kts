@@ -65,6 +65,9 @@ dependencies {
     val ktor_version = "2.3.11"
     val supabase_version = "2.4.1"
 
+    //pull to refresh
+    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
+
     //hilt
     implementation ("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
