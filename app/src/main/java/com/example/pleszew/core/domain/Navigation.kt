@@ -45,6 +45,11 @@ object WydarzeniaKulturalneStart: Navigation {
 
 object WydarzeniaKulturalneDetails: Navigation {
     override val route = "wydarzenia_kulturalne_details"
+    const val eventId = "event_id"
+    val arguments = listOf(navArgument(name = eventId) {
+        type = NavType.StringType
+    })
+    fun createRouteWithParam(eventId: String) = "${WydarzeniaKulturalneDetails.route}/${eventId}"
 }
 
 object MiejscaRozrywki: Navigation {

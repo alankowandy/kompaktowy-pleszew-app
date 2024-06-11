@@ -36,6 +36,8 @@ import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiDetailsS
 import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiScreen
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
+import com.example.pleszew.wydarzenia_kulturalne.presentation.screen.WydarzeniaKulturalneDetailsScreen
+import com.example.pleszew.wydarzenia_kulturalne.presentation.screen.WydarzeniaKulturalneScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -148,11 +150,21 @@ fun MainView() {
                 route = WydarzeniaKulturalne.route
             ) {
                 composable(WydarzeniaKulturalneStart.route) {
-
+                    WydarzeniaKulturalneScreen(
+                        navController = navController,
+                        sharedViewModel = sharedViewModel
+                    )
                 }
 
-                composable(WydarzeniaKulturalneDetails.route) {
-
+                composable(
+                    route = "${WydarzeniaKulturalneDetails.route}/{${WydarzeniaKulturalneDetails.eventId}}",
+                    arguments = WydarzeniaKulturalneDetails.arguments
+                ) {navBackStackEntry ->
+                    val eventId =
+                        navBackStackEntry.arguments?.getString(WydarzeniaKulturalneDetails.eventId)
+                    WydarzeniaKulturalneDetailsScreen(
+                        eventId = eventId
+                    )
                 }
             }
 

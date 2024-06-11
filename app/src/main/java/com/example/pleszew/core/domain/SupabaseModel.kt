@@ -4,6 +4,8 @@ import com.example.pleszew.miasto_samorzad.data.MiastoSamorzadRepository
 import com.example.pleszew.miasto_samorzad.data.MiastoSamorzadRepositoryImpl
 import com.example.pleszew.miejsca_rozrywki.data.start.MiejscaRozrywkiRepository
 import com.example.pleszew.miejsca_rozrywki.data.start.MiejscaRozrywkiRepositoryImpl
+import com.example.pleszew.wydarzenia_kulturalne.data.WydarzeniaKulturalneRepository
+import com.example.pleszew.wydarzenia_kulturalne.data.WydarzeniaKulturalneRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,5 +45,10 @@ object SupabaseModel {
     @Provides
     fun provideMiastoSamorzadRepository(postgrest: Postgrest): MiastoSamorzadRepository {
         return MiastoSamorzadRepositoryImpl(postgrest)
+    }
+
+    @Provides
+    fun provideWydarzeniaKulturalneRepository(postgrest: Postgrest): WydarzeniaKulturalneRepository {
+        return WydarzeniaKulturalneRepositoryImpl(postgrest)
     }
 }

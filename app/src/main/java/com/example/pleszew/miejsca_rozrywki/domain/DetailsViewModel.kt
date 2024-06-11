@@ -22,7 +22,7 @@ class DetailsViewModel @Inject constructor(
     fun getDetails(id: String) {
         viewModelScope.launch {
             val detailsMap = miejscaRozrywkiRepository.getDetails(id)
-            Log.d("tag", detailsMap.toString())
+            //Log.d("tag", detailsMap.toString())
             _details.emit(detailsMap.map { it -> it.asDomainModel() })
         }
     }
