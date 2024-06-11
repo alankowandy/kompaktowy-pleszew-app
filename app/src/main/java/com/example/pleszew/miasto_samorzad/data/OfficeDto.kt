@@ -33,5 +33,11 @@ data class OfficeDto (
     val officePostal: String,
 
     @SerialName("miejscowosc")
-    val officeTown: String
+    val officeTown: String,
+
+    @SerialName("latitude")
+    val officeLatitude: Float,
+
+    @SerialName("longitude")
+    val officeLongitude: Float
 )

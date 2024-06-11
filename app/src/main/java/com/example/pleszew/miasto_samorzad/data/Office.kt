@@ -10,5 +10,7 @@ data class Office (
     val officeHouseNumber: String,
     val officeApartmentNumber: String?,
     val officePostal: String,
-    val officeTown: String
+    val officeTown: String,
+    val officeLatitude: Double,
+    val officeLongitude: Double
 )

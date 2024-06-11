@@ -21,14 +21,14 @@ fun ShowMap(
 ) {
     val markerState = remember {
         MarkerState(
-            position = LatLng(51.895733914868, 17.7864688789233)
+            position = LatLng(office.officeLatitude, office.officeLongitude)
         )
     }
 
     Box(
         modifier = androidx.compose.ui.Modifier
             .fillMaxWidth()
-            .height(500.dp)
+            .height(400.dp)
             .padding(16.dp)
     ) {
         GoogleMap(

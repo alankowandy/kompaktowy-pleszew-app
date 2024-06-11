@@ -175,7 +175,7 @@ fun OfficeItems(
             if (showMap) {
                 val cameraPositionState = rememberCameraPositionState {
                     position = CameraPosition(
-                        LatLng(51.895733914868, 17.7864688789233),
+                        LatLng(office.officeLatitude, office.officeLongitude),
                         15f,
                         0f,
                         0f

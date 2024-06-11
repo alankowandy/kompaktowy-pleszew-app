@@ -46,7 +46,9 @@ class MiastoSamorzadViewModel @Inject constructor(
             officeHouseNumber = this.officeHouseNumber,
             officeApartmentNumber = this.officeApartmentNumber,
             officePostal = this.officePostal,
-            officeTown = this.officeTown
+            officeTown = this.officeTown,
+            officeLatitude = this.officeLatitude.toDouble(),
+            officeLongitude = this.officeLongitude.toDouble()
         )
     }
 
