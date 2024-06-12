@@ -38,6 +38,8 @@ import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
 import com.example.pleszew.wydarzenia_kulturalne.presentation.screen.WydarzeniaKulturalneDetailsScreen
 import com.example.pleszew.wydarzenia_kulturalne.presentation.screen.WydarzeniaKulturalneScreen
+import com.example.pleszew.wywoz_smieci.presentation.screen.WywozSmieciDetailsScreen
+import com.example.pleszew.wywoz_smieci.presentation.screen.WywozSmieciScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -124,11 +126,24 @@ fun MainView() {
                 route = WywozSmieci.route
             ) {
                 composable(WywozSmieciStart.route) {
-
+                    WywozSmieciScreen(
+                        navController = navController,
+                        sharedViewModel = sharedViewModel
+                    )
                 }
 
-                composable(WywozSmieciDetails.route) {
-
+                composable(
+                    route = "${WywozSmieciDetails.route}/{${WywozSmieciDetails.routeId}}/{${WywozSmieciDetails.month}}",
+                    arguments = WywozSmieciDetails.arguments
+                ) { navBackStackEntry ->
+                    val routeId =
+                        navBackStackEntry.arguments?.getString(WywozSmieciDetails.routeId)
+                    val month =
+                        navBackStackEntry.arguments?.getString(WywozSmieciDetails.month)
+                    WywozSmieciDetailsScreen(
+                        routeId = routeId,
+                        month = month
+                    )
                 }
             }
 

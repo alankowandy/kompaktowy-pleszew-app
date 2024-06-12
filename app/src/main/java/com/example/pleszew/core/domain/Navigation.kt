@@ -21,6 +21,17 @@ object WywozSmieciStart: Navigation {
 
 object WywozSmieciDetails: Navigation {
     override val route = "wywoz_smieci_details"
+    const val routeId = "route_id"
+    const val month = "month"
+    val arguments = listOf(
+        navArgument(name = routeId) {
+        type = NavType.StringType
+        },
+        navArgument(name = month) {
+            type = NavType.StringType
+        }
+    )
+    fun createRouteWithParam(routeId: String, month: String) = "${WywozSmieciDetails.route}/${routeId}/${month}"
 }
 
 object KomunikacjaMiejska: Navigation {

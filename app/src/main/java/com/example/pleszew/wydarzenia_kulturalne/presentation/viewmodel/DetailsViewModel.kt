@@ -32,7 +32,6 @@ class DetailsViewModel @Inject constructor(
         val eventId = savedStateHandle.get<String>(WydarzeniaKulturalneDetails.eventId)
         eventId?.let {
             getEventDetails(it)
-            Log.d("done", "done")
         }
     }
 
