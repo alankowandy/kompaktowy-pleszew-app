@@ -96,7 +96,8 @@ fun EventItems(
                 Text(
                     text = events.eventDate,
                     style = androidx.compose.material.MaterialTheme.typography.subtitle1,
-                    fontSize = 17.sp
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }
             Card(

@@ -66,7 +66,7 @@ fun WywozSmieciDetailsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(start = 16.dp, end = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Card(
@@ -121,7 +121,7 @@ fun WywozSmieciDetailsScreen(
                 wywozSmieciDetailsViewModel = wywozSmieciDetailsViewModel,
                 onClick = {dateString ->
                     if (dateString.isNotEmpty()) {
-                        val startMillis = convertDateToMillis(dateString, "yyyy-MM-dd")
+                        val startMillis = convertDateToMillis(dateString, "dd-MM-yyyy")
                         val endMillis = startMillis + 3600000 // 1 hour duration
 
                         createCalendarEventIntent(

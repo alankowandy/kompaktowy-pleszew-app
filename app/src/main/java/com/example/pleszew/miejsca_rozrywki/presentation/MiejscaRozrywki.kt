@@ -67,7 +67,7 @@ fun EntertainmentPlaceItem(
 
     @DrawableRes val icon: Int = when (place.id) {
         "1" -> { R.drawable.ic_kino_hel }
-        "2" -> { R.drawable.ic_recycling }
+        "2" -> { R.drawable.ic_theater }
         "3" -> { R.drawable.ic_muzeum_piekarstwa }
         "4" -> { R.drawable.ic_muzeum }
         "5" -> { R.drawable.ic_park }

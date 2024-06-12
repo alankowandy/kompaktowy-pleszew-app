@@ -71,7 +71,7 @@ fun EntertainmentPlaceDetailsItem(
 ) {
     @DrawableRes val icon: Int = when (locationId) {
         "1" -> { R.drawable.ic_kino_hel }
-        "2" -> { R.drawable.ic_recycling }
+        "2" -> { R.drawable.ic_theater }
         "3" -> { R.drawable.ic_muzeum_piekarstwa }
         "4" -> { R.drawable.ic_muzeum }
         "5" -> { R.drawable.ic_park }
@@ -156,7 +156,7 @@ fun EntertainmentPlaceDetailsItem(
                             "instagram" -> {
                                 val index = place.locationWebsiteName.indexOf(website)
                                 InformationBox(
-                                    icon = R.drawable.ic_phone,
+                                    icon = R.drawable.ic_instagram,
                                     value = place.locationWebsiteName[index].replaceFirstChar {
                                         if (it.isLowerCase()) it.titlecase(
                                             Locale.ROOT
@@ -173,7 +173,7 @@ fun EntertainmentPlaceDetailsItem(
                             "facebook" -> {
                                 val index = place.locationWebsiteName.indexOf(website)
                                 InformationBox(
-                                    icon = R.drawable.ic_phone,
+                                    icon = R.drawable.ic_facebook,
                                     value = place.locationWebsiteName[index].replaceFirstChar {
                                         if (it.isLowerCase()) it.titlecase(
                                             Locale.ROOT
@@ -190,7 +190,7 @@ fun EntertainmentPlaceDetailsItem(
                             "youtube" -> {
                             val index = place.locationWebsiteName.indexOf(website)
                             InformationBox(
-                                icon = R.drawable.ic_phone,
+                                icon = R.drawable.ic_youtube,
                                 value = place.locationWebsiteName[index].replaceFirstChar {
                                     if (it.isLowerCase()) it.titlecase(
                                         Locale.ROOT
@@ -207,7 +207,7 @@ fun EntertainmentPlaceDetailsItem(
                             else -> {
                                 val index = place.locationWebsiteName.indexOf(website)
                                 InformationBox(
-                                    icon = R.drawable.ic_phone,
+                                    icon = R.drawable.ic_cursor,
                                     value = place.locationWebsiteName[index],
                                     onClick = {
                                         openWebPage(

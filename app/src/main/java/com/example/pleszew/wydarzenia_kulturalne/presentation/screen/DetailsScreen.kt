@@ -103,11 +103,50 @@ fun EventItem(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Text(
-                            text = event.eventDate,
-                            style = MaterialTheme.typography.subtitle1,
-                            fontSize = 17.sp
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = event.eventDate,
+                                style = MaterialTheme.typography.subtitle1,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            if (event.eventEnd.isNotBlank()) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 4.dp, start = 16.dp, end = 16.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Text(
+                                        text = buildString {
+                                            append("${event.eventStart} - ${event.eventEnd}")
+                                        },
+                                        style = MaterialTheme.typography.subtitle1,
+                                        fontSize = 15.sp
+                                    )
+                                }
+                            } else {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 4.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Text(
+                                        text = event.eventStart,
+                                        style = MaterialTheme.typography.subtitle1,
+                                        fontSize = 15.sp
+                                    )
+                                }
+                            }
+                        }
                     }
                     Card(
                         modifier = Modifier
@@ -129,37 +168,6 @@ fun EventItem(
                                 style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center
-                            )
-                        }
-                    }
-                    if (event.eventEnd.isNotBlank()) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 4.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Text(
-                                text = buildString {
-                                    append("${event.eventStart} - ${event.eventEnd}")
-                                },
-                                style = MaterialTheme.typography.subtitle1,
-                                fontSize = 15.sp
-                            )
-                        }
-                    } else {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 4.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Text(
-                                text = event.eventStart,
-                                style = MaterialTheme.typography.subtitle1,
-                                fontSize = 15.sp
                             )
                         }
                     }

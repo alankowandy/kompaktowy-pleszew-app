@@ -31,7 +31,7 @@ class WywozSmieciRepositoryImpl @Inject constructor(
     override suspend fun getGarbageCollectionDetails(id: String, month: String): List<GarbageCollectionDetailsDto> {
         return withContext(Dispatchers.IO) {
             val data = postgrest.rpc(
-                function = "get_wywoz_details",
+                function = "get_wywoz_details_v2",
                 parameters = buildJsonObject {
                     put("p_id_trasy", id)
                     put("p_miesiac", month)

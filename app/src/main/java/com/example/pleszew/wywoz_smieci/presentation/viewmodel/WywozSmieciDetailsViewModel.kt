@@ -64,7 +64,7 @@ class WywozSmieciDetailsViewModel @Inject constructor(
     }
 
     private fun updateUniqueGarbageTypes(collections: List<GarbageCollectionDetails>) {
-        val uniqueTypes = collections.map { it.garbageType }.distinct().sorted()
+        val uniqueTypes = collections.map { it.garbageType }.sorted()
         _uniqueGarbageTypes.value = uniqueTypes
 
         val datesMap = uniqueTypes.associateWith { type ->

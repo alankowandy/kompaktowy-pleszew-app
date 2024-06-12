@@ -1,5 +1,7 @@
 package com.example.pleszew.core.domain
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,6 +32,7 @@ import com.example.pleszew.city15.presentation.Miasto15
 import com.example.pleszew.core.data.MenuItems
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
+import com.example.pleszew.komunikacja_miejska.presentation.screen.KomunikacjaMiejskaScreen
 import com.example.pleszew.main.presentation.MenuScreen
 import com.example.pleszew.miasto_samorzad.presentation.screen.MiastoSamorzadSceen
 import com.example.pleszew.miejsca_rozrywki.presentation.MiejscaRozrywkiDetailsScreen
@@ -43,6 +46,7 @@ import com.example.pleszew.wywoz_smieci.presentation.screen.WywozSmieciScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainView() {
@@ -152,7 +156,10 @@ fun MainView() {
                 route = KomunikacjaMiejska.route
             ) {
                 composable(KomunikacjaMiejskaStart.route) {
-
+                    KomunikacjaMiejskaScreen(
+                        navController = navController,
+                        sharedViewModel = sharedViewModel
+                    )
                 }
 
                 composable(KomunikacjaMiejskaDetails.route) {

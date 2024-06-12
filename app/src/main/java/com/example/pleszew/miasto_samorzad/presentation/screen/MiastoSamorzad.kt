@@ -41,6 +41,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.rememberCameraPositionState
+import io.ktor.http.websocket.websocketServerAccept
 
 @Composable
 fun MiastoSamorzadSceen(
@@ -90,18 +91,25 @@ fun OfficeItems(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .size(height = 70.dp, width = 200.dp),
                 shape = RoundedCornerShape(8.dp),
                 backgroundColor = Bialy,
                 elevation = 4.dp
             ) {
-                Text(
-                    text = office.officeName,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    minLines = 2
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = office.officeName,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             Row(
                 modifier = Modifier
