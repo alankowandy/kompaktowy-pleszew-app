@@ -75,46 +75,6 @@ fun WywozSmieciScreen(
                         color = Color.Black,
                         modifier = Modifier.padding(bottom = 16.dp)
                     )
-
-                    // Użycie nowego, bardziej interaktywnego pola wyboru miasta
-//                    OutlinedTextField(
-//                        value = "",
-//                        onValueChange = {},
-//                        label = { Text(text = "Miasto", color = Color.Black) },
-//                        textStyle = LocalTextStyle.current.copy(color = Color.Black),
-//                        singleLine = true,
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .background(color = Color.Transparent)
-//                            .padding(bottom = 8.dp)
-//                    )
-//
-//                    // Użycie nowego, bardziej interaktywnego pola wyboru trasy
-//                    OutlinedTextField(
-//                        value = "",
-//                        onValueChange = {},
-//                        label = { Text("Trasa", color = Color.Black) },
-//                        textStyle = LocalTextStyle.current.copy(color = Color.Black),
-//                        singleLine = true,
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .background(color = Color.Transparent)
-//                            .padding(bottom = 8.dp)
-//                    )
-//
-//                    // Użycie nowego, bardziej interaktywnego pola wyboru miesiąca
-//                    OutlinedTextField(
-//                        value = "",
-//                        onValueChange = {},
-//                        label = { Text("Miesiąc", color = Color.Black) },
-//                        textStyle = LocalTextStyle.current.copy(color = Color.Black),
-//                        singleLine = true,
-//                        modifier = Modifier
-//                            .fillMaxWidth()
-//                            .background(color = Color.Transparent)
-//                            .padding(bottom = 8.dp)
-//                    )
-
                     if (!routes.isNullOrEmpty()) {
                         DropDownMenus(
                             routes = routes,

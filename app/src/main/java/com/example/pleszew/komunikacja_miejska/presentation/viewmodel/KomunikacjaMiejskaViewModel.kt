@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.pleszew.komunikacja_miejska.data.KomunikacjaMiejskaRepository
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStops
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStopsDto
+import com.example.pleszew.komunikacja_miejska.data.start.SelectedStop
+import com.example.pleszew.komunikacja_miejska.data.start.SelectedStopDto
 import com.example.pleszew.komunikacja_miejska.data.start.Stops
 import com.example.pleszew.komunikacja_miejska.data.start.StopsDto
 import com.example.pleszew.miasto_samorzad.data.Office

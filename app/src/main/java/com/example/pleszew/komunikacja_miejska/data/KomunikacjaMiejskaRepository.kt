@@ -1,9 +1,11 @@
 package com.example.pleszew.komunikacja_miejska.data
 
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStopsDto
+import com.example.pleszew.komunikacja_miejska.data.start.SelectedStopDto
 import com.example.pleszew.komunikacja_miejska.data.start.StopsDto
 import com.example.pleszew.miasto_samorzad.data.OfficeDto
 import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetailsDto
+import com.example.pleszew.wywoz_smieci.data.details.GarbageCollectionDetailsDto
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.rpc
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +20,8 @@ interface KomunikacjaMiejskaRepository{
     suspend fun getStopsSearched(searchText: String): List<StopsDto>
 
     suspend fun getLines(stopId: String): List<SearchedStopsDto>
+
+    suspend fun getSelectedStop(stopName: String, lineId: String): List<SelectedStopDto>
 }
 
 class KomunikacjaMiejskaRepositoryImpl @Inject constructor(
@@ -51,6 +55,19 @@ class KomunikacjaMiejskaRepositoryImpl @Inject constructor(
                     put("p_search_number", stopId)
                 }
             ).decodeList<SearchedStopsDto>()
+            data
+        }
+    }
+
+    override suspend fun getSelectedStop(stopName: String, lineId: String): List<SelectedStopDto> {
+        return withContext(Dispatchers.IO) {
+            val data = postgrest.rpc(
+                function = "search_przystanek_and_czas_odjazdu_by_nazwa_linii",
+                parameters = buildJsonObject {
+                    put("p_nazwa_przystanku", stopName)
+                    put("p_id_linii", lineId)
+                }
+            ).decodeList<SelectedStopDto>()
             data
         }
     }

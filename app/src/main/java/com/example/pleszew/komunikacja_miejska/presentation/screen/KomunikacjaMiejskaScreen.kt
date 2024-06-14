@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.pleszew.core.data.MenuItems
+import com.example.pleszew.core.domain.KomunikacjaMiejskaDetails
 import com.example.pleszew.core.domain.SharedViewModel
 import com.example.pleszew.komunikacja_miejska.presentation.viewmodel.KomunikacjaMiejskaViewModel
 import com.example.pleszew.ui.theme.Bialy
@@ -249,7 +250,12 @@ fun KomunikacjaMiejskaScreen(
                                                     .fillMaxWidth()
                                                     .padding(8.dp)
                                                     .clickable {
-
+                                                        navController.navigate(
+                                                            KomunikacjaMiejskaDetails.createRouteWithParam(
+                                                                stopName = it,
+                                                                lineId = stop.lineId
+                                                            )
+                                                        )
                                                     }
                                             ) {
                                                 Text(

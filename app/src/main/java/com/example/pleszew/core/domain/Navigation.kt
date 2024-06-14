@@ -44,6 +44,17 @@ object KomunikacjaMiejskaStart: Navigation {
 
 object KomunikacjaMiejskaDetails: Navigation {
     override val route = "komunikacja_miejska_details"
+    const val stopName = "stop_name"
+    const val lineId = "line_id"
+    val arguments = listOf(
+        navArgument(name = stopName) {
+            type = NavType.StringType
+        },
+        navArgument(name = lineId) {
+            type = NavType.StringType
+        }
+    )
+    fun createRouteWithParam(stopName: String, lineId: String) = "${KomunikacjaMiejskaDetails.route}/${stopName}/${lineId}"
 }
 
 object WydarzeniaKulturalne: Navigation {

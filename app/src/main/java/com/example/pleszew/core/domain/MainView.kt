@@ -32,6 +32,7 @@ import com.example.pleszew.city15.presentation.Miasto15
 import com.example.pleszew.core.data.MenuItems
 import com.example.pleszew.core.data.screensInDrawer
 import com.example.pleszew.core.presentation.DrawerItem
+import com.example.pleszew.komunikacja_miejska.presentation.screen.KomunikacjaMiejskaHoursScreen
 import com.example.pleszew.komunikacja_miejska.presentation.screen.KomunikacjaMiejskaScreen
 import com.example.pleszew.main.presentation.MenuScreen
 import com.example.pleszew.miasto_samorzad.presentation.screen.MiastoSamorzadSceen
@@ -162,8 +163,18 @@ fun MainView() {
                     )
                 }
 
-                composable(KomunikacjaMiejskaDetails.route) {
-
+                composable(
+                    route = "${KomunikacjaMiejskaDetails.route}/{${KomunikacjaMiejskaDetails.stopName}}/{${KomunikacjaMiejskaDetails.lineId}}",
+                    arguments = KomunikacjaMiejskaDetails.arguments
+                ) {navBackStackEntry ->
+                    val stopName =
+                        navBackStackEntry.arguments?.getString(KomunikacjaMiejskaDetails.stopName)
+                    val lineId =
+                        navBackStackEntry.arguments?.getString(KomunikacjaMiejskaDetails.lineId)
+                    KomunikacjaMiejskaHoursScreen(
+                        stopName = stopName,
+                        lineId = lineId
+                    )
                 }
             }
 
