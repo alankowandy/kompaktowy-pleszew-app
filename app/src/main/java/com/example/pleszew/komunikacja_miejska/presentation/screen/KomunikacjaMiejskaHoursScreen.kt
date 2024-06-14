@@ -15,16 +15,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.pleszew.komunikacja_miejska.presentation.viewmodel.KomunikacjaMiejskaHoursViewModel
-import com.example.pleszew.komunikacja_miejska.presentation.viewmodel.KomunikacjaMiejskaViewModel
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.CiemnyNiebieski
-import com.example.pleszew.ui.theme.JasnyNiebieski
 
 @Composable
 fun KomunikacjaMiejskaHoursScreen(

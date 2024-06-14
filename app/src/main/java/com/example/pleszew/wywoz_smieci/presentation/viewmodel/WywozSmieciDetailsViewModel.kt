@@ -24,12 +24,6 @@ class WywozSmieciDetailsViewModel @Inject constructor(
     private val _collectionDetails = MutableStateFlow<List<GarbageCollectionDetails>>(listOf())
     val collectionDetails: Flow<List<GarbageCollectionDetails>> = _collectionDetails
 
-    private val _uniqueGarbageTypes = MutableStateFlow<List<String>>(emptyList())
-    val uniqueGarbageTypes: Flow<List<String>> = _uniqueGarbageTypes.asStateFlow()
-
-    private val _filteredDatesMap = MutableStateFlow<Map<String, List<String>>>(emptyMap())
-    val filteredDatesMap: StateFlow<Map<String, List<String>>> = _filteredDatesMap.asStateFlow()
-
     private val _detailName = MutableStateFlow("")
     val detailName: Flow<String> = _detailName
 
@@ -59,18 +53,7 @@ class WywozSmieciDetailsViewModel @Inject constructor(
             _detailName.value = data.firstOrNull()?.name ?: "Miasto"
             _routeName.value = data.firstOrNull()?.routeName ?: "Trasa"
             _collectedRoute.value = data.firstOrNull()?.route ?: ""
-            updateUniqueGarbageTypes(data)
         }
-    }
-
-    private fun updateUniqueGarbageTypes(collections: List<GarbageCollectionDetails>) {
-        val uniqueTypes = collections.map { it.garbageType }.sorted()
-        _uniqueGarbageTypes.value = uniqueTypes
-
-        val datesMap = uniqueTypes.associateWith { type ->
-            collections.filter { it.garbageType == type }.map { it.collectionDate }
-        }
-        _filteredDatesMap.value = datesMap
     }
 
     private fun GarbageCollectionDetailsDto.asDomainModel(): GarbageCollectionDetails {

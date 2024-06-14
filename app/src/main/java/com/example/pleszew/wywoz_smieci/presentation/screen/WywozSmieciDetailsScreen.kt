@@ -45,6 +45,7 @@ import com.example.pleszew.wywoz_smieci.presentation.viewmodel.WywozSmieciDetail
 import com.example.pleszew.R
 import com.example.pleszew.ui.theme.Fioletowy
 import com.example.pleszew.ui.theme.Zolty
+import com.example.pleszew.wywoz_smieci.data.details.GarbageCollectionDetails
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -60,7 +61,6 @@ fun WywozSmieciDetailsScreen(
     val detailName by wywozSmieciDetailsViewModel.detailName.collectAsState(initial = "Miasto")
     val routeName by wywozSmieciDetailsViewModel.routeName.collectAsState(initial = "Trasa")
     val collectedRoute by wywozSmieciDetailsViewModel.collectedRoute.collectAsState(initial = "")
-    val uniqueGarbageTypes by wywozSmieciDetailsViewModel.uniqueGarbageTypes.collectAsState(initial = listOf())
     val context = LocalContext.current
     
     Column(
@@ -115,26 +115,22 @@ fun WywozSmieciDetailsScreen(
             modifier = Modifier
                 .padding(8.dp)
         )
-        uniqueGarbageTypes.forEach { type ->
-            GarbageTypeBox(
-                garbageType = type,
-                wywozSmieciDetailsViewModel = wywozSmieciDetailsViewModel,
-                onClick = {dateString ->
-                    if (dateString.isNotEmpty()) {
-                        val startMillis = convertDateToMillis(dateString, "dd-MM-yyyy")
-                        val endMillis = startMillis + 3600000 // 1 hour duration
+        collectionDetails.forEach { type ->
+            GarbageTypeBox(garbageType = type) { dateString ->
+                if (dateString.isNotEmpty()) {
+                    val startMillis = convertDateToMillis(dateString, "dd-MM-yyyy")
+                    val endMillis = startMillis + 3600000 // 1 hour duration
 
-                        createCalendarEventIntent(
-                            context,
-                            title = "Wywóz śmieci: $type",
-                            location = detailName,
-                            description = type,
-                            startMillis = startMillis,
-                            endMillis = endMillis
-                        )
-                    }
+                    createCalendarEventIntent(
+                        context,
+                        title = "Wywóz śmieci: ${type.garbageType}",
+                        location = detailName,
+                        description = type.garbageType,
+                        startMillis = startMillis,
+                        endMillis = endMillis
+                    )
                 }
-            )
+            }
             Spacer(modifier = Modifier.height(12.dp))
         }
     }
@@ -142,16 +138,9 @@ fun WywozSmieciDetailsScreen(
 
 @Composable
 fun GarbageTypeBox(
-    garbageType: String,
-    wywozSmieciDetailsViewModel: WywozSmieciDetailsViewModel,
+    garbageType: GarbageCollectionDetails,
     onClick: (String) -> Unit
 ) {
-    val filteredDates by wywozSmieciDetailsViewModel.filteredDatesMap.collectAsState()
-    val dates = filteredDates[garbageType] ?: emptyList()
-    val datesString = dates.joinToString(", ")
-//    wywozSmieciDetailsViewModel.filterDatesByGarbageType(garbageType)
-//    val filteredDates by wywozSmieciDetailsViewModel.filteredDates.collectAsState(initial = listOf())
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -169,11 +158,11 @@ fun GarbageTypeBox(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                when (garbageType) {
+                when (garbageType.garbageType) {
                     "Bio zielone" -> {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_garbage_type_color),
-                            contentDescription = garbageType,
+                            contentDescription = garbageType.garbageType,
                             tint = Zielony,
                             modifier = Modifier
                                 .size(50.dp)
@@ -182,7 +171,7 @@ fun GarbageTypeBox(
                     "Pojemniki czarne" -> {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_garbage_type_color),
-                            contentDescription = garbageType,
+                            contentDescription = garbageType.garbageType,
                             tint = Color.Black,
                             modifier = Modifier
                                 .size(50.dp)
@@ -191,7 +180,7 @@ fun GarbageTypeBox(
                     "Popiół" -> {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_garbage_type_color),
-                            contentDescription = garbageType,
+                            contentDescription = garbageType.garbageType,
                             tint = Fioletowy,
                             modifier = Modifier
                                 .size(50.dp)
@@ -200,7 +189,7 @@ fun GarbageTypeBox(
                     "Selektywna zbiórka odpadów" -> {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_garbage_type_color),
-                            contentDescription = garbageType,
+                            contentDescription = garbageType.garbageType,
                             tint = Zolty,
                             modifier = Modifier
                                 .size(50.dp)
@@ -220,13 +209,13 @@ fun GarbageTypeBox(
                         backgroundColor = Bialy
                     ) {
                         Text(
-                            text = garbageType,
+                            text = garbageType.garbageType,
                             textAlign = TextAlign.Center,
                             style = MaterialTheme.typography.h6.copy(fontSize = 18.sp, fontWeight = FontWeight.Medium)
                         )
                     }
                     Text(
-                        text = datesString,
+                        text = garbageType.collectionDate,
                         modifier = Modifier
                             .fillMaxWidth(),
                         textAlign = TextAlign.Center
@@ -234,12 +223,12 @@ fun GarbageTypeBox(
                 }
                 IconButton(
                     onClick = {
-                        onClick(dates.firstOrNull() ?: "")
+                        onClick(garbageType.collectionDate)
                     }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_calendar),
-                        contentDescription = garbageType,
+                        contentDescription = garbageType.name,
                         modifier = Modifier
                             .size(40.dp)
                     )
@@ -273,7 +262,7 @@ fun createCalendarEventIntent(
         putExtra(CalendarContract.Events.DESCRIPTION, description)
         putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis)
         putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis)
-        putExtra(CalendarContract.Events.ALL_DAY, false) // Set to true if it's an all-day event
+        putExtra(CalendarContract.Events.ALL_DAY, false)
     }
     context.startActivity(intent)
 }

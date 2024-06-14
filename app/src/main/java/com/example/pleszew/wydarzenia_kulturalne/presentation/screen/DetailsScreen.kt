@@ -1,6 +1,5 @@
 package com.example.pleszew.wydarzenia_kulturalne.presentation.screen
 
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
@@ -40,13 +39,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetails
 import com.example.pleszew.ui.theme.Bialy
 import com.example.pleszew.ui.theme.JasnyNiebieski
 import com.example.pleszew.wydarzenia_kulturalne.data.details.EventDetails
-import com.example.pleszew.wydarzenia_kulturalne.data.main.Event
 import com.example.pleszew.wydarzenia_kulturalne.presentation.viewmodel.DetailsViewModel
-import com.example.pleszew.wydarzenia_kulturalne.presentation.viewmodel.WydarzeniaKulturalneViewModel
 
 @Composable
 fun WydarzeniaKulturalneDetailsScreen(

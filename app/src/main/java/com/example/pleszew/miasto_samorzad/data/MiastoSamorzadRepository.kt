@@ -1,6 +1,5 @@
 package com.example.pleszew.miasto_samorzad.data
 
-import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetailsDto
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.rpc
 import kotlinx.coroutines.Dispatchers

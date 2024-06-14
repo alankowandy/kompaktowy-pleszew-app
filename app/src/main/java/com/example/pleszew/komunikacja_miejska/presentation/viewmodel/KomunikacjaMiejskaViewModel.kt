@@ -5,20 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.example.pleszew.komunikacja_miejska.data.KomunikacjaMiejskaRepository
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStops
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStopsDto
-import com.example.pleszew.komunikacja_miejska.data.start.SelectedStop
-import com.example.pleszew.komunikacja_miejska.data.start.SelectedStopDto
 import com.example.pleszew.komunikacja_miejska.data.start.Stops
 import com.example.pleszew.komunikacja_miejska.data.start.StopsDto
-import com.example.pleszew.miasto_samorzad.data.Office
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,8 +38,14 @@ class KomunikacjaMiejskaViewModel @Inject constructor(
     private val _isCollected = MutableStateFlow(false)
     val isCollected = _isCollected.asStateFlow()
 
+    private val _stops = MutableStateFlow<List<Stops>>(listOf())
+
+    private val _isSearching = MutableStateFlow(false)
+    val isSearching = _isSearching.asStateFlow()
+
     init {
         getStops()
+        observeSearchText()
     }
 
     fun getStops() {
@@ -56,8 +58,27 @@ class KomunikacjaMiejskaViewModel @Inject constructor(
 
     fun getStopsSearched(searchText: String) {
         viewModelScope.launch {
+            _isSearching.value = true
             val stopsSearchedMap = komunikacjaMiejskaRepository.getStopsSearched(searchText)
             _stops.emit(stopsSearchedMap.map { it -> it.asDomainModel() })
+            _isSearching.value = false
+        }
+    }
+
+    @OptIn(FlowPreview::class)
+    private fun observeSearchText() {
+        viewModelScope.launch {
+            searchText
+                .debounce(500L)
+                .onEach { _isSearching.update { true } }
+                .collect { text ->
+                    if (text.isBlank()) {
+                        _stops.emit(_dataStops.value)
+                        _isSearching.value = false
+                    } else {
+                        getStopsSearched(text)
+                    }
+                }
         }
     }
 
@@ -69,24 +90,24 @@ class KomunikacjaMiejskaViewModel @Inject constructor(
         }
     }
 
-    private val _stops = MutableStateFlow<List<Stops>>(listOf())
     @OptIn(FlowPreview::class)
-    val stops = searchText
-        .debounce(500L)
-        .combine(_stops) { text, stops ->
-            if (text.isBlank()) {
-                stops
-            } else {
-                stops.filter {
-                    it.doesMarchSearchQuery(text)
-                }
-            }
-        }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000L),
-            _stops.value
-        )
+    val stops = _stops.asStateFlow()
+//    val stops = searchText
+//        .debounce(500L)
+//        .combine(_stops) { text, stops ->
+//            if (text.isBlank()) {
+//                stops
+//            } else {
+//                stops.filter {
+//                    it.doesMarchSearchQuery(text)
+//                }
+//            }
+//        }
+//        .stateIn(
+//            viewModelScope,
+//            SharingStarted.WhileSubscribed(5000L),
+//            _stops.value
+//        )
 
     fun updateSearchText(text: String) {
         _searchText.value = text

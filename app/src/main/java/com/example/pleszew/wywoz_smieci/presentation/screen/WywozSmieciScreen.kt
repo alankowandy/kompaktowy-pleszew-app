@@ -121,7 +121,6 @@ fun WywozSmieciScreen(
             ) {
                 Text(
                     text = routeDetail,
-                    //text = "Obszar, którego dotyczy harmonogram: Korzkwy 30a; Kowalew: ul. Jarocińska 1-7 oraz Pleszew ulice: Bogusza 1, Daszyńskiego 1-11, Kaliska 3, Kowalska 1,3, Koźmińska 1-12, Kraszewskiego 1-10, Lipowa 1,12, Plac Kościelny 1-6, Plac Kościuszki 4,4a,5, Poznańska 2-147, Rynek 1-24, Szpitalna 6-21, Tyniec 3, 4, 5, Wąska 2,3,7, Wierzbowa - Ogrody, Zamkowa 1-5.",
                     color = Color.White,
                     fontSize = 14.sp,
                     textAlign = TextAlign.Center,

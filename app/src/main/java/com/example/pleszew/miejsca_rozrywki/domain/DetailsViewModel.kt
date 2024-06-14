@@ -1,6 +1,5 @@
 package com.example.pleszew.miejsca_rozrywki.domain
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetails

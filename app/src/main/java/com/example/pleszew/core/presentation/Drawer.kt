@@ -15,7 +15,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.pleszew.core.data.MenuItems
-import com.example.pleszew.core.domain.SharedViewModel
 
 @Composable
 fun DrawerItem(

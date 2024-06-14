@@ -1,7 +1,5 @@
 package com.example.pleszew.wydarzenia_kulturalne.data
 
-import com.example.pleszew.miasto_samorzad.data.OfficeDto
-import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetailsDto
 import com.example.pleszew.wydarzenia_kulturalne.data.details.EventDetailsDto
 import com.example.pleszew.wydarzenia_kulturalne.data.main.EventDto
 import io.github.jan.supabase.postgrest.Postgrest

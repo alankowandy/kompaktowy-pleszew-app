@@ -3,7 +3,6 @@ package com.example.pleszew.komunikacja_miejska.presentation.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pleszew.core.domain.KomunikacjaMiejska
 import com.example.pleszew.core.domain.KomunikacjaMiejskaDetails
 import com.example.pleszew.komunikacja_miejska.data.KomunikacjaMiejskaRepository
 import com.example.pleszew.komunikacja_miejska.data.start.SelectedStop
@@ -30,7 +29,7 @@ class KomunikacjaMiejskaHoursViewModel @Inject constructor(
         }
     }
 
-    fun getSelectedStop(stopName: String, lineId: String) {
+    private fun getSelectedStop(stopName: String, lineId: String) {
         viewModelScope.launch {
             val stopMap = komunikacjaMiejskaRepository.getSelectedStop(stopName, lineId)
             _selectedStop.emit(stopMap.map { it -> it.asDomainModel() })

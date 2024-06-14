@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -28,7 +27,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.pleszew.core.data.MenuItems
 import com.example.pleszew.core.domain.SharedViewModel
 import com.example.pleszew.core.presentation.PullToRefreshLazyColumn
@@ -39,9 +37,7 @@ import com.example.pleszew.ui.theme.CiemnyNiebieski
 import com.example.pleszew.ui.theme.JasnyNiebieski
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.rememberCameraPositionState
-import io.ktor.http.websocket.websocketServerAccept
 
 @Composable
 fun MiastoSamorzadSceen(

@@ -3,9 +3,6 @@ package com.example.pleszew.komunikacja_miejska.data
 import com.example.pleszew.komunikacja_miejska.data.start.SearchedStopsDto
 import com.example.pleszew.komunikacja_miejska.data.start.SelectedStopDto
 import com.example.pleszew.komunikacja_miejska.data.start.StopsDto
-import com.example.pleszew.miasto_samorzad.data.OfficeDto
-import com.example.pleszew.miejsca_rozrywki.data.details.LocationDetailsDto
-import com.example.pleszew.wywoz_smieci.data.details.GarbageCollectionDetailsDto
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.rpc
 import kotlinx.coroutines.Dispatchers
