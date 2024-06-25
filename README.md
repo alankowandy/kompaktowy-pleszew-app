@@ -68,6 +68,14 @@ Once the app is installed on your device, you can navigate through the various s
 - Retrofit for API calls
 - Google Maps API
 
+## Presentations
+
+[Kompaktowy_pleszew_prezentacja_koncowa.pdf](https://github.com/user-attachments/files/15973928/Kompaktowy_pleszew_prezentacja_koncowa_147259_154015_154054.pdf)
+
+[SPRAWOZDANIE_KOMPAKTOWY_PLESZEW.pdf](https://github.com/user-attachments/files/15973930/SPRAWOZDANIE_KOMPAKTOWY_PLESZEW_147259_154015_154054.pdf)
+
+
+
 ## Contribution
 
 If you would like to contribute to this project, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
@@ -82,7 +90,7 @@ For any inquiries or questions about the project, please contact me at: alan.kow
 
 ---
 
-Developed by [Alan Kowańdy](https://github.com/alankowandy) and [Maria Mądrzak](https://github.com/szarrk)
+Developed by [Alan Kowańdy](https://github.com/alankowandy), [Maria Mądrzak](https://github.com/szarrk) and [Julia Banach](https://github.com/juliaban)
 
 ---
 
