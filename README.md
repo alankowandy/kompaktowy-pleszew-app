@@ -52,7 +52,7 @@ To install and run the app on your local machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/pleszew-city-app.git
+   git clone https://github.com/alankowandy/kompaktowy-pleszew-app.git
 2. Open the project in Android Studio.
 3. Build and run the app on an emulator or physical device.
 
