@@ -2,7 +2,7 @@
 
 This repository contains the source code for the Pleszew City mobile application, developed as a project for the Mobile Applications course at Politechnika Poznańska. The app is designed to provide residents and visitors of Pleszew with essential city information and services, making it easier to navigate and enjoy what the city has to offer.
 
-> ⚠️ **Note**: This project was created as part of my university coursework. I am currently working on a **new and improved version** of the app that will be publicly released on mobile app stores.
+## ⚠️ **Note**: This project was created as part of my university coursework. I am currently working on a **new and improved version** of the app that will be publicly released on mobile app stores.
 
 ## 📱 Features
 
