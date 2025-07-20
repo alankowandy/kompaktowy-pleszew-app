@@ -2,32 +2,34 @@
 
 This repository contains the source code for the Pleszew City mobile application, developed as a project for the Mobile Applications course at Politechnika Poznańska. The app is designed to provide residents and visitors of Pleszew with essential city information and services, making it easier to navigate and enjoy what the city has to offer.
 
-## Features
+> ⚠️ **Note**: This project was created as part of my university coursework. I am currently working on a **new and improved version** of the app that will be publicly released on mobile app stores.
 
-### Garbage Collection Details
+## 📱 Features
+
+### 🗑️ Garbage Collection
 - View the schedule for garbage collection.
 - Set reminders in your calendar for specific garbage collection dates.
 
-### Public Transport Details
+### 🚌 Public Transport
 - Access detailed information about public transport routes and schedules.
 - Search for stops and view the lines that pass through them.
 
-### Cultural Events
+### 🎭 Cultural Events
 - Stay updated with the most recent cultural events happening in Pleszew.
 - View detailed information about each event, including date, time, and location.
 
-### Places of Entertainment
+### 🎉 Places of Entertainment
 - Browse a list of entertainment venues in Pleszew.
 - Get detailed information about each place, including address and contact details.
 
-### City and Local Government Information
+### 🏛️ City and Government Info
 - Access detailed information about the city and local government.
 - View locations using the Google Maps API.
 
-### Project Miasto 15'
+### 🏙️ Miasto 15’ Project
 - Learn about the Miasto 15' project, its goals, and initiatives.
 
-## Screenshots
+## 🖼️ Screenshots
 
 <p>
     <img src="https://github.com/alankowandy/kompaktowy-pleszew-app/assets/100705149/17f80db8-ac8a-43fe-81a4-51492f7e2ccc" alt="Home View" width="200">
@@ -46,7 +48,7 @@ This repository contains the source code for the Pleszew City mobile application
     <img src="https://github.com/alankowandy/kompaktowy-pleszew-app/assets/100705149/844a3527-bce9-4834-82aa-6fd98f21c9a8" alt="City15 View" width="200">
 </p>
 
-## Installation
+## 🚀 Installation
 
 To install and run the app on your local machine:
 
@@ -56,11 +58,11 @@ To install and run the app on your local machine:
 2. Open the project in Android Studio.
 3. Build and run the app on an emulator or physical device.
 
-## Usage
+## 🧭 Usage
 
 Once the app is installed on your device, you can navigate through the various sections using the bottom navigation bar. Each section provides specific features as outlined above.
 
-## Technologies Used
+## 🔧 Technologies Used
 
 - Kotlin
 - Jetpack Compose
@@ -68,7 +70,7 @@ Once the app is installed on your device, you can navigate through the various s
 - Retrofit for API calls
 - Google Maps API
 
-## Presentations
+## 📂 Presentations
 
 [Kompaktowy_pleszew_prezentacja_koncowa.pdf](https://github.com/user-attachments/files/15973928/Kompaktowy_pleszew_prezentacja_koncowa_147259_154015_154054.pdf)
 
@@ -76,17 +78,13 @@ Once the app is installed on your device, you can navigate through the various s
 
 
 
-## Contribution
+## 🤝 Contribution
 
 If you would like to contribute to this project, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
+## 📄 License
 
 This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any inquiries or questions about the project, please contact me at: alan.kowandy@outlook.com
 
 ---
 
